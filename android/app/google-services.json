@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "981012331684",
+    "project_id": "ecom-app-6090a",
+    "storage_bucket": "ecom-app-6090a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981012331684:android:f166b06fd9d09eafb4ba31",
+        "android_client_info": {
+          "package_name": "com.example.grocery_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "981012331684-oeccups0lf3vgp3i0j655i1q87i6u8p0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHJgVRstYckhbQ0UCGFJgwsv4sM-kuolc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "981012331684-oeccups0lf3vgp3i0j655i1q87i6u8p0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
