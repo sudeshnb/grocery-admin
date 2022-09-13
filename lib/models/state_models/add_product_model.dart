@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grocery_admin/models/data_models/category.dart';
 import 'package:grocery_admin/models/data_models/product.dart';
@@ -87,14 +86,13 @@ class AddProductModel with ChangeNotifier {
             "-" +
             dateTime.day.toString();
 
-        final id=dateTime.month.toString() +
+        final id = dateTime.month.toString() +
             dateTime.day.toString() +
             dateTime.second.toString() +
             dateTime.microsecond.toString();
         print(id);
         if (path == null) {
-          path = "products/" +
-              id;
+          path = "products/" + id;
         }
 
         Map<String, dynamic> data = {
@@ -117,9 +115,8 @@ class AddProductModel with ChangeNotifier {
         isLoading = false;
         notifyListeners();
 
-        Navigator.pop(context, Product.fromMap(data,path.split('/')[1]));
+        Navigator.pop(context, Product.fromMap(data, path.split('/')[1]));
         print(id);
-
       } catch (e) {
         Navigator.pop(context);
         if (e is FirebaseException) {
@@ -127,8 +124,7 @@ class AddProductModel with ChangeNotifier {
 
           showDialog(
               context: context,
-              builder: (context) =>
-                  ErrorDialog( message: exception.message!));
+              builder: (context) => ErrorDialog(message: exception.message!));
         }
         isLoading = false;
         notifyListeners();
@@ -232,8 +228,7 @@ class AddProductModel with ChangeNotifier {
         showDialog(
             context: context,
             builder: (context) {
-             return const ErrorDialog(
-                  message: "Please select a png image");
+              return const ErrorDialog(message: "Please select a png image");
             });
       }
     } else {

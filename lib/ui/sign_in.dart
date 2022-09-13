@@ -67,10 +67,11 @@ class _SignInState extends State<SignIn> with TickerProviderStateMixin<SignIn> {
           child: NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (overscroll) {
           ///Disable listview glow
-          overscroll.disallowGlow();
+          overscroll.disallowIndicator();
           return true;
         },
         child: ListView(
+          physics: BouncingScrollPhysics(),
           shrinkWrap: true,
           padding: EdgeInsets.all(20),
           children: <Widget>[
@@ -83,6 +84,7 @@ class _SignInState extends State<SignIn> with TickerProviderStateMixin<SignIn> {
                 height: 100,
               ),
             ),
+
             ///Email text field
             EmailTextField(
                 textEditingController: emailController,
@@ -107,6 +109,7 @@ class _SignInState extends State<SignIn> with TickerProviderStateMixin<SignIn> {
                     ))
                   : SizedBox(),
             ),
+
             ///Password text field
             EmailTextField(
                 textEditingController: passwordController,
@@ -143,7 +146,8 @@ class _SignInState extends State<SignIn> with TickerProviderStateMixin<SignIn> {
                         child: CircularProgressIndicator(),
                       ),
                     )
-              ///Submit button
+
+                  ///Submit button
                   : DefaultButton(
                       color: themeModel.accentColor,
                       widget: Text(

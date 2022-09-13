@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grocery_admin/models/state_models/add_category_model.dart';
 import 'package:grocery_admin/models/data_models/category.dart';
@@ -26,17 +25,16 @@ class AddCategory extends StatefulWidget {
           return Padding(
             padding: MediaQuery.of(context).viewInsets,
             child: ChangeNotifierProvider<AddCategoryModel>(
-            create: (context) => AddCategoryModel(database: database),
-            child: Consumer<AddCategoryModel>(
-              builder: (context, model, _) {
-                return AddCategory._(
-                  model: model,
-                  category: category,
-                );
-              },
+              create: (context) => AddCategoryModel(database: database),
+              child: Consumer<AddCategoryModel>(
+                builder: (context, model, _) {
+                  return AddCategory._(
+                    model: model,
+                    category: category,
+                  );
+                },
+              ),
             ),
-          ),
-
           );
         });
   }
@@ -53,7 +51,6 @@ class _AddCategoryState extends State<AddCategory>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     if (widget.category != null) {
@@ -83,12 +80,11 @@ class _AddCategoryState extends State<AddCategory>
       child: Wrap(
         children: [
           Align(
-            alignment: Alignment.center,
-            child: Text(
+              alignment: Alignment.center,
+              child: Text(
                 ((widget.category == null) ? "Add" : "Edit") + " Category",
-              style: themeModel.theme.textTheme.headline3,
-            )
-          ),
+                style: themeModel.theme.textTheme.headline3,
+              )),
           Padding(
             padding: EdgeInsets.only(top: 20),
             child: DefaultTextField(
@@ -107,14 +103,10 @@ class _AddCategoryState extends State<AddCategory>
             child: (!widget.model.validTitle)
                 ? FadeIn(
                     child: Text(
-                      'Please enter a valid title',
-                      style: themeModel.theme.textTheme.subtitle2!
-                          .apply(color: Colors.red),
-                    )
-
-
-
-                  )
+                    'Please enter a valid title',
+                    style: themeModel.theme.textTheme.subtitle2!
+                        .apply(color: Colors.red),
+                  ))
                 : SizedBox(),
           ),
           Padding(
@@ -142,11 +134,12 @@ class _AddCategoryState extends State<AddCategory>
                         borderRadius: BorderRadius.circular(15),
                         child: (!widget.model.networkImage)
                             ? FadeInImage(
-                                placeholder:  MemoryImage(kTransparentImage),
+                                placeholder: MemoryImage(kTransparentImage),
                                 image: (widget.model.image ==
                                         'images/upload_image.png')
                                     ? AssetImage(widget.model.image)
-                                    : FileImage(File(widget.model.image)) as ImageProvider,
+                                    : FileImage(File(widget.model.image))
+                                        as ImageProvider,
                                 width: (isPortrait) ? width / 3 : height / 4,
                                 fit: BoxFit.cover,
                               )
@@ -168,14 +161,11 @@ class _AddCategoryState extends State<AddCategory>
             child: (!widget.model.validImage)
                 ? FadeIn(
                     child: Center(
-                      child: Text(
-                        'Please choose an image',
-                        style: themeModel.theme.textTheme.subtitle2!
-                            .apply(color: Colors.red),
-                      )
-
-
-                    ),
+                        child: Text(
+                      'Please choose an image',
+                      style: themeModel.theme.textTheme.subtitle2!
+                          .apply(color: Colors.red),
+                    )),
                   )
                 : SizedBox(),
           ),
@@ -186,25 +176,20 @@ class _AddCategoryState extends State<AddCategory>
                     child: CircularProgressIndicator(),
                   )
                 : Container(
-
-              width: double.infinity,
-              child:DefaultButton(
-                //margin: EdgeInsets.all(0),
-                  widget: Text(
-                    (widget.category == null) ? "Add" : "Update",
-                    style: themeModel.theme.textTheme.headline3!
-                        .apply(color: Colors.white),
+                    width: double.infinity,
+                    child: DefaultButton(
+                        //margin: EdgeInsets.all(0),
+                        widget: Text(
+                          (widget.category == null) ? "Add" : "Update",
+                          style: themeModel.theme.textTheme.headline3!
+                              .apply(color: Colors.white),
+                        ),
+                        onPressed: () async {
+                          await widget.model.submit(
+                              context, titleController.text, widget.category);
+                        },
+                        color: themeModel.accentColor),
                   ),
-
-                  onPressed: () async {
-                   await widget.model.submit(
-                        context, titleController.text, widget.category);
-
-
-                  },
-                  color: themeModel.accentColor),
-
-            ),
           )
         ],
       ),

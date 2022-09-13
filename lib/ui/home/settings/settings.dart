@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:grocery_admin/models/state_models/settings_model.dart';
@@ -38,8 +37,6 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-
-
   @override
   Widget build(BuildContext context) {
     final themeModel = Provider.of<ThemeModel>(context);
@@ -89,7 +86,8 @@ class _SettingsState extends State<Settings> {
                     ),
                   ),
                 ),
-                Expanded(child: GestureDetector(
+                Expanded(
+                    child: GestureDetector(
                   onTap: () {
                     UpdateInfo.create(context).then((value) {
                       if (value != null) {
@@ -210,8 +208,7 @@ class _SettingsState extends State<Settings> {
                 SettingsCard(
                     title: "Logout",
                     onPressed: () async {
-
-                     await widget.model.signOut();
+                      await widget.model.signOut();
                     },
                     widget: Icon(
                       Icons.exit_to_app,
@@ -223,8 +220,5 @@ class _SettingsState extends State<Settings> {
         ],
       ),
     );
-
   }
-
-
 }

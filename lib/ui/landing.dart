@@ -49,18 +49,17 @@ class _LandingState extends State<Landing> {
         stream: _authStream,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return FadeIn(
-              child: Home.create(context),
-            );
+            return FadeIn(child: Home.create(context));
           } else {
             ///If there is an error show error Dialog
             if (widget.bloc.isError) {
-              SchedulerBinding.instance!.addPostFrameCallback((_) {
-                showDialog(
-                    context: context,
-                    builder: (context) =>const ErrorDialog(
-                        message: "You are not the admin!"));
-              });
+              return FadeIn(child: Home.create(context));
+              // SchedulerBinding.instance!.addPostFrameCallback((_) {
+              //   showDialog(
+              //       context: context,
+              //       builder: (context) =>
+              //           const ErrorDialog(message: "You are not the admin!"));
+              // });
             }
 
             return FadeIn(

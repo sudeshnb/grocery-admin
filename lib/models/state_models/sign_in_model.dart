@@ -26,6 +26,13 @@ class SignInModel with ChangeNotifier {
 
         await auth.signInWithEmailAndPassword(email, password);
 
+        // await auth.updateNameAndEmail('email@gamil.com', 'name');
+        // final credential =
+        //     await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        //   email: email,
+        //   password: password,
+        // );
+
         isLoading = false;
         notifyListeners();
       }
@@ -36,11 +43,10 @@ class SignInModel with ChangeNotifier {
       }
 
       FirebaseAuthException exception = e as FirebaseAuthException;
-
+      print(exception.message!);
       showDialog(
           context: context,
-          builder: (context) =>
-              ErrorDialog( message: exception.message!));
+          builder: (context) => ErrorDialog(message: exception.message!));
     }
   }
 

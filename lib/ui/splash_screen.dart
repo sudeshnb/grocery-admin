@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:grocery_admin/helpers/project_configuration.dart';
 import 'package:grocery_admin/services/auth.dart';
 import 'package:grocery_admin/services/database.dart';
@@ -43,7 +42,6 @@ class SplashScreen extends StatelessWidget {
               builder: (context, snapshot) {
                 if (verificationSnapshot.connectionState ==
                     ConnectionState.done) {
-
                   ///Check if the user is an admin
                   SchedulerBinding.instance!.addPostFrameCallback((_) {
                     Future.delayed(Duration.zero).then((value) async {

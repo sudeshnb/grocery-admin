@@ -88,6 +88,7 @@ class MyApp extends StatelessWidget {
 
           return MaterialApp(
             theme: model.theme,
+            debugShowCheckedModeBanner: false,
             home: SplashScreen(
               auth: auth,
               database: database,
